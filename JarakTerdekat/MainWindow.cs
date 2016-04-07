@@ -307,7 +307,9 @@ namespace JarakTerdekat
             }
             else if(cb_algoritma.Text == "Prim")
             {
-
+                watch.Restart();
+                calculateShortestSpanPrim();
+                Console.WriteLine("hello");
             }
             
             watch.Stop();
@@ -426,97 +428,6 @@ namespace JarakTerdekat
                 HighlightBehaviour.SetHighlighted(_gArea.EdgesList[currentNeighbor.edge], true);
         }
 
-        private List<int> getPathWithFloyd()
-        {
-            Console.WriteLine("Algorithm: Floyd");
-
-            double inf = double.PositiveInfinity;
-
-            Console.WriteLine(inf);
-
-            var pathTable = new List<List<double>>();
-
-            for (int i = 0; i < nodeCollection.Nodes.Count; i++)
-            {
-                pathTable.Add(new List<double>());
-
-                var from = nodeCollection.Nodes[i];
-                var fromNeighbors = from.neighborsCollection;
-
-                for (int j = 0; j < nodeCollection.Nodes.Count; j++)
-                {
-                    var to = nodeCollection.Nodes[j];
-
-                    if (to.name == from.name)
-                    {
-                        pathTable[i].Add(0);
-                    }
-                    else
-                    {
-                        var index = fromNeighbors.getNeighborIndexByName(to.name);
-                        if (index != -1)
-                        {
-                            pathTable[i].Add(fromNeighbors.Nodes[index].jarak);
-                        }
-                        else
-                        {
-                            pathTable[i].Add(inf);
-                        }
-                    }
-                }
-            }
-
-            floyd.init(pathTable, (nodeCollection.Nodes.Count));
-            var fromIndex = nodeCollection.getIndexByName(cb_initialNode.Text);
-            var toIndex = nodeCollection.getIndexByName(cb_endNode.Text);
-
-            if (fromIndex > toIndex)
-            {
-                var temp = fromIndex;
-                fromIndex = toIndex;
-                toIndex = temp;
-            }
-
-            List<int> hasil = floyd.calculateShortestPath(fromIndex, toIndex);
-
-            totalJarak = floyd.totalJarak;
-
-            return hasil;
-        }
-
-        private List<int> getPathWithBellmanFord()
-        {
-            Console.WriteLine("Algorithm: Bellman Ford");
-
-            BellmanFord bellmanFord = new BellmanFord();
-
-            var fromIndex = -1;
-            var toIndex = -1;
-            var cost = 0.0;
-
-            for (int i = 0; i < nodeCollection.Nodes.Count; i++)
-            {
-                fromIndex = i;
-
-                if (nodeCollection.Nodes[i].neighborsCollection.Nodes.Count > 0)
-                {
-                    foreach (var neighbor in nodeCollection.Nodes[i].neighborsCollection.Nodes)
-                    {
-                        toIndex = nodeCollection.getIndexByName(neighbor.node.name);
-                        cost = neighbor.jarak;
-
-                        bellmanFord.Edge.Add(new BellmanFord.edge(fromIndex, toIndex, cost));
-                    }
-                }
-            }
-
-            bellmanFord.getShortestPathList(nodeCollection.getIndexByName(cb_initialNode.Text), nodeCollection.getIndexByName(cb_endNode.Text));
-
-            totalJarak = bellmanFord.totalJarak;
-
-            return bellmanFord.shortestPathList;
-        }
-
         private void btn_deleteNode_Click(object sender, EventArgs e)
         {
             if (treeView1.SelectedNode.Text == "Root")
@@ -552,22 +463,14 @@ namespace JarakTerdekat
 
         private void calculateShortestSpanBoruvka()
         {
-            foreach (var edge in _gArea.EdgesList)
-            {
-                HighlightBehaviour.SetHighlighted(edge.Value, false);
-            }
-
-            foreach (var vertex in _gArea.VertexList)
-            {
-                HighlightBehaviour.SetHighlighted(vertex.Value, false);
-            }
+            resetEdgesHighligh();
 
             List<Edge> validEdges = new List<Edge>();
             List<Edge> usedEdges = new List<Edge>();
 
             foreach (var edge in edgeCollection)
             {
-                if(!isInUsedEdgelist(edge.src, edge.dest, usedEdges))
+                if (!isInUsedEdgelist(edge.src, edge.dest, usedEdges))
                 {
                     validEdges.Add(edge);
                     validEdges[validEdges.Count - 1].index = validEdges.Count - 1;
@@ -579,7 +482,7 @@ namespace JarakTerdekat
 
             List<int> resultEdges = boruvka.start(validEdges, nodeCollection.Nodes.Count, validEdges.Count);
 
-            foreach(var edge in validEdges)
+            foreach (var edge in validEdges)
             {
                 Console.WriteLine("Valid edges: " + edge.index);
             }
@@ -596,6 +499,27 @@ namespace JarakTerdekat
             }
         }
 
+        private void calculateShortestSpanPrim()
+        {
+            resetEdgesHighligh();
+
+            Prim prim = new Prim();
+            prim.main();
+        }
+
+        private void resetEdgesHighligh()
+        {
+            foreach (var edge in _gArea.EdgesList)
+            {
+                HighlightBehaviour.SetHighlighted(edge.Value, false);
+            }
+
+            foreach (var vertex in _gArea.VertexList)
+            {
+                HighlightBehaviour.SetHighlighted(vertex.Value, false);
+            }
+        }
+
         private bool isInUsedEdgelist(int start, int end, List<Edge> usedEdges)
         {
             foreach(var edge in usedEdges)
@@ -606,6 +530,11 @@ namespace JarakTerdekat
                 }
             }
             return false;
+        }
+
+        private void materialRaisedButton1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
