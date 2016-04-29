@@ -16,3 +16,12 @@ C:\Users\Yohanes Simare Mare\Downloads\Compressed\MinimumTreeSpan\GraphX.PCL.Com
 C:\Users\Yohanes Simare Mare\Downloads\Compressed\MinimumTreeSpan\GraphX.PCL.Common\obj\Debug\GraphX.PCL.Common.csprojResolveAssemblyReference.cache
 C:\Users\Yohanes Simare Mare\Downloads\Compressed\MinimumTreeSpan\GraphX.PCL.Common\obj\Debug\GraphX.PCL.Common.dll
 C:\Users\Yohanes Simare Mare\Downloads\Compressed\MinimumTreeSpan\GraphX.PCL.Common\obj\Debug\GraphX.PCL.Common.pdb
+D:\Code\Desktop-App\MinimumSpanningTree\GraphX.PCL.Common\bin\Debug\GraphX.PCL.Common.dll
+D:\Code\Desktop-App\MinimumSpanningTree\GraphX.PCL.Common\bin\Debug\GraphX.PCL.Common.pdb
+D:\Code\Desktop-App\MinimumSpanningTree\GraphX.PCL.Common\bin\Debug\QuickGraph.dll
+D:\Code\Desktop-App\MinimumSpanningTree\GraphX.PCL.Common\bin\Debug\QuickGraph.Graphviz.dll
+D:\Code\Desktop-App\MinimumSpanningTree\GraphX.PCL.Common\bin\Debug\QuickGraph.xml
+D:\Code\Desktop-App\MinimumSpanningTree\GraphX.PCL.Common\bin\Debug\QuickGraph.Graphviz.xml
+D:\Code\Desktop-App\MinimumSpanningTree\GraphX.PCL.Common\obj\Debug\GraphX.PCL.Common.csprojResolveAssemblyReference.cache
+D:\Code\Desktop-App\MinimumSpanningTree\GraphX.PCL.Common\obj\Debug\GraphX.PCL.Common.dll
+D:\Code\Desktop-App\MinimumSpanningTree\GraphX.PCL.Common\obj\Debug\GraphX.PCL.Common.pdb
