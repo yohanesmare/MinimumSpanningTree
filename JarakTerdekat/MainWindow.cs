@@ -294,13 +294,13 @@ namespace JarakTerdekat
 
             double elapsedMs = 0;
 
-            if (cb_algoritma.Text == "Boruvka")
+            if (rb_boruvka.Checked)
             {
                 watch.Restart();
                 calculateMinSpanTreeBoruvka();
 
             }
-            else if(cb_algoritma.Text == "Prim")
+            else if(rb_prim.Checked)
             {
                 watch.Restart();
                 calculateMinSpanTreePrim();

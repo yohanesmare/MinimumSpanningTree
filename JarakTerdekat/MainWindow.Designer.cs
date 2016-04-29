@@ -22,7 +22,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Root");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Root");
             this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -81,6 +81,9 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.materialDivider7 = new MaterialSkin.Controls.MaterialDivider();
+            this.rb_boruvka = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rb_prim = new System.Windows.Forms.RadioButton();
             this.materialTabControl1.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -97,6 +100,7 @@
             this.tabPage5.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // materialTabSelector1
@@ -256,11 +260,11 @@
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.lbl_totalJarak);
             this.panel1.Controls.Add(this.lbl_executionTime);
-            this.panel1.Controls.Add(this.cb_algoritma);
             this.panel1.Controls.Add(this.btn_calculateMinSpanTree);
             this.panel1.Location = new System.Drawing.Point(931, 6);
             this.panel1.Name = "panel1";
@@ -270,7 +274,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 141);
+            this.label3.Location = new System.Drawing.Point(3, 228);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 13);
             this.label3.TabIndex = 30;
@@ -279,7 +283,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 97);
+            this.label2.Location = new System.Drawing.Point(3, 184);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 13);
             this.label2.TabIndex = 25;
@@ -291,7 +295,7 @@
             this.lbl_totalJarak.Depth = 0;
             this.lbl_totalJarak.Font = new System.Drawing.Font("Roboto", 11F);
             this.lbl_totalJarak.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lbl_totalJarak.Location = new System.Drawing.Point(107, 93);
+            this.lbl_totalJarak.Location = new System.Drawing.Point(98, 180);
             this.lbl_totalJarak.MouseState = MaterialSkin.MouseState.HOVER;
             this.lbl_totalJarak.Name = "lbl_totalJarak";
             this.lbl_totalJarak.Size = new System.Drawing.Size(0, 19);
@@ -303,7 +307,7 @@
             this.lbl_executionTime.Depth = 0;
             this.lbl_executionTime.Font = new System.Drawing.Font("Roboto", 11F);
             this.lbl_executionTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lbl_executionTime.Location = new System.Drawing.Point(107, 141);
+            this.lbl_executionTime.Location = new System.Drawing.Point(98, 228);
             this.lbl_executionTime.MouseState = MaterialSkin.MouseState.HOVER;
             this.lbl_executionTime.Name = "lbl_executionTime";
             this.lbl_executionTime.Size = new System.Drawing.Size(0, 19);
@@ -315,15 +319,16 @@
             this.cb_algoritma.Items.AddRange(new object[] {
             "Boruvka",
             "Prim"});
-            this.cb_algoritma.Location = new System.Drawing.Point(11, 53);
+            this.cb_algoritma.Location = new System.Drawing.Point(1127, 613);
             this.cb_algoritma.Name = "cb_algoritma";
-            this.cb_algoritma.Size = new System.Drawing.Size(142, 21);
+            this.cb_algoritma.Size = new System.Drawing.Size(20, 21);
             this.cb_algoritma.TabIndex = 26;
+            this.cb_algoritma.Visible = false;
             // 
             // btn_calculateMinSpanTree
             // 
             this.btn_calculateMinSpanTree.Depth = 0;
-            this.btn_calculateMinSpanTree.Location = new System.Drawing.Point(159, 53);
+            this.btn_calculateMinSpanTree.Location = new System.Drawing.Point(159, 115);
             this.btn_calculateMinSpanTree.MouseState = MaterialSkin.MouseState.HOVER;
             this.btn_calculateMinSpanTree.Name = "btn_calculateMinSpanTree";
             this.btn_calculateMinSpanTree.Primary = true;
@@ -627,10 +632,10 @@
             this.treeView1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.treeView1.Location = new System.Drawing.Point(3, 16);
             this.treeView1.Name = "treeView1";
-            treeNode4.Name = "Node0";
-            treeNode4.Text = "Root";
+            treeNode1.Name = "Node0";
+            treeNode1.Text = "Root";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            treeNode1});
             this.treeView1.Size = new System.Drawing.Size(195, 387);
             this.treeView1.TabIndex = 5;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -817,6 +822,40 @@
             this.materialDivider7.TabStop = false;
             this.materialDivider7.Text = "materialDivider7";
             // 
+            // rb_boruvka
+            // 
+            this.rb_boruvka.AutoSize = true;
+            this.rb_boruvka.Checked = true;
+            this.rb_boruvka.Location = new System.Drawing.Point(7, 30);
+            this.rb_boruvka.Name = "rb_boruvka";
+            this.rb_boruvka.Size = new System.Drawing.Size(65, 17);
+            this.rb_boruvka.TabIndex = 31;
+            this.rb_boruvka.TabStop = true;
+            this.rb_boruvka.Text = "Boruvka";
+            this.rb_boruvka.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.rb_prim);
+            this.groupBox1.Controls.Add(this.rb_boruvka);
+            this.groupBox1.Location = new System.Drawing.Point(15, 8);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(190, 101);
+            this.groupBox1.TabIndex = 32;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Algoritma";
+            // 
+            // rb_prim
+            // 
+            this.rb_prim.AutoSize = true;
+            this.rb_prim.Location = new System.Drawing.Point(7, 53);
+            this.rb_prim.Name = "rb_prim";
+            this.rb_prim.Size = new System.Drawing.Size(45, 17);
+            this.rb_prim.TabIndex = 32;
+            this.rb_prim.Text = "Prim";
+            this.rb_prim.UseVisualStyleBackColor = true;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -827,6 +866,7 @@
             this.Controls.Add(this.materialDivider1);
             this.Controls.Add(this.cb_initialNode);
             this.Controls.Add(this.materialTabSelector1);
+            this.Controls.Add(this.cb_algoritma);
             this.Controls.Add(this.materialTabControl1);
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -851,6 +891,8 @@
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -915,6 +957,9 @@
         private System.Windows.Forms.Panel panel7;
         private System.IO.Ports.SerialPort serialPort1;
         private MaterialSkin.Controls.MaterialDivider materialDivider7;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rb_prim;
+        private System.Windows.Forms.RadioButton rb_boruvka;
     }
 }
 
