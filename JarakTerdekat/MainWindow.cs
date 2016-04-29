@@ -8,10 +8,8 @@ using GraphX.PCL.Logic.Models;
 using GraphX.Controls;
 using GraphX.Controls.Models;
 using QuickGraph;
-
 using MaterialSkin;
 using MaterialSkin.Controls;
-
 using System.Collections.Generic;
 using System.IO;
 
@@ -25,8 +23,6 @@ namespace JarakTerdekat
 
         private NodeCollection nodeCollection;
 
-        private Floyd floyd;
-
         private System.Diagnostics.Stopwatch watch;
 
         private double totalJarak;
@@ -35,8 +31,6 @@ namespace JarakTerdekat
 
         public MainWindow()
         {
-            floyd = new Floyd();
-
             nodeCollection = new NodeCollection();
 
             edgeCollection = new List<Edge>();
@@ -44,9 +38,9 @@ namespace JarakTerdekat
             materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.Green800, Primary.Green900, Primary.Green500, Accent.LightGreen200, TextShade.WHITE);
 
-            InitializeComponent();
+            InitializeComponents();
             Load += Form1_Load;
 
             panel_nodeProperty.Visible = false;
@@ -58,7 +52,8 @@ namespace JarakTerdekat
             watch = System.Diagnostics.Stopwatch.StartNew();
             watch.Stop();
 
-            //textBox_about.ScrollBars = ScrollBars.Vertical;
+            textBox_about.ScrollBars = ScrollBars.None;
+            textBox_help.ScrollBars = ScrollBars.Vertical;
         }
 
         void Form1_Load(object sender, EventArgs e)
@@ -289,7 +284,7 @@ namespace JarakTerdekat
             }
         }
 
-        private void btn_calculateShortestPath_Click(object sender, EventArgs e)
+        private void btn_calculateMinSpanTree_Click(object sender, EventArgs e)
         {
             if (!isGraphReady)
                 return;
@@ -302,23 +297,23 @@ namespace JarakTerdekat
             if (cb_algoritma.Text == "Boruvka")
             {
                 watch.Restart();
-                calculateShortestSpanBoruvka();
+                calculateMinSpanTreeBoruvka();
 
             }
             else if(cb_algoritma.Text == "Prim")
             {
                 watch.Restart();
-                calculateShortestSpanPrim();
+                calculateMinSpanTreePrim();
                 Console.WriteLine("hello");
             }
             
             watch.Stop();
             elapsedMs = watch.ElapsedMilliseconds;
-           
+
             //highlightPath(result);
 
-            //lbl_executionTime.Text = (elapsedMs + " ms");
-            //lbl_totalJarak.Text = (totalJarak.ToString());
+            lbl_executionTime.Text = (elapsedMs + " ms");
+            lbl_totalJarak.Text = (totalJarak.ToString()  + " m");
         }
 
         private void btn_loadNodes_Click(object sender, EventArgs e)
@@ -461,7 +456,7 @@ namespace JarakTerdekat
             populateSelectedNodeDataToList();
         }
 
-        private void calculateShortestSpanBoruvka()
+        private void calculateMinSpanTreeBoruvka()
         {
             resetEdgesHighligh();
 
@@ -497,14 +492,79 @@ namespace JarakTerdekat
             {
                 HighlightBehaviour.SetHighlighted(vertex.Value, true);
             }
+
+            totalJarak = boruvka.totalJarak;
         }
 
-        private void calculateShortestSpanPrim()
+        private void calculateMinSpanTreePrim()
         {
+            for (var i=0; i<edgeCollection.Count; i++)
+            {
+                edgeCollection[i].index = i;
+            }
+
+            var pathTable = graphToTable();
+
             resetEdgesHighligh();
 
             Prim prim = new Prim();
-            prim.main();
+            List<int> resultEdges = prim.main(edgeCollection, pathTable, nodeCollection.Nodes.Count);
+
+            foreach (var edge in resultEdges)
+            {
+                Console.WriteLine("Result edge: " + edge);
+            }
+
+            foreach (var edgeIndex in resultEdges)
+            {
+                highlightTheEdge(edgeCollection[edgeIndex].srcNode, edgeCollection[edgeIndex].destNode);
+                highlightTheEdge(edgeCollection[edgeIndex].destNode, edgeCollection[edgeIndex].srcNode);
+            }
+
+            foreach (var vertex in _gArea.VertexList)
+            {
+                HighlightBehaviour.SetHighlighted(vertex.Value, true);
+            }
+
+            totalJarak = prim.totalJarak;
+        }
+
+        private List<List<double>> graphToTable()
+        {
+            var inf = double.PositiveInfinity;
+
+            var pathTable = new List<List<double>>();
+
+            for (int i = 0; i < nodeCollection.Nodes.Count; i++)
+            {
+                pathTable.Add(new List<double>());
+
+                var from = nodeCollection.Nodes[i];
+                var fromNeighbors = from.neighborsCollection;
+
+                for (int j = 0; j < nodeCollection.Nodes.Count; j++)
+                {
+                    var to = nodeCollection.Nodes[j];
+
+                    if (to.name == from.name)
+                    {
+                        pathTable[i].Add(0);
+                    }
+                    else
+                    {
+                        var index = fromNeighbors.getNeighborIndexByName(to.name);
+                        if (index != -1)
+                        {
+                            pathTable[i].Add(fromNeighbors.Nodes[index].jarak);
+                        }
+                        else
+                        {
+                            pathTable[i].Add(inf);
+                        }
+                    }
+                }
+            }
+            return pathTable;
         }
 
         private void resetEdgesHighligh()
@@ -532,7 +592,12 @@ namespace JarakTerdekat
             return false;
         }
 
-        private void materialRaisedButton1_Click(object sender, EventArgs e)
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox_about_TextChanged(object sender, EventArgs e)
         {
 
         }

@@ -126,8 +126,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\Boruvka.cs" />
-    <Compile Include="Algorithms\Floyd.cs" />
-    <Compile Include="Algorithms\BellmanFord.cs" />
     <Compile Include="Algorithms\Prim.cs" />
     <Compile Include="Classes\PlainNode.cs" />
     <Compile Include="Classes\PlainNodeCollection.cs" />
@@ -183,8 +181,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\dice.png" />
+    <None Include="Resources\Yohanes.jpeg" />
     <None Include="Resources\logo usu untuk semua png1.png" />
-    <None Include="Resources\logo usu untuk semua png.png" />
     <None Include="Resources\logo usu baru.png" />
   </ItemGroup>
   <ItemGroup>

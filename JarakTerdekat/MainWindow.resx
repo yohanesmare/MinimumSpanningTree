@@ -121,7 +121,7 @@
   <data name="but_generate.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAIGNIUk0AAHolAACAgwAA+f8AAIDoAABS
-        CAABFVgAADqXAAAXb9daH5AAAAAJcEhZcwAARCMAAEQjARIjYisAAAeUSURBVHhezZt1iK1FGIev127F
+        CAABFVgAADqXAAAXb9daH5AAAAAJcEhZcwAARBsAAEQbAe2VWxAAAAeUSURBVHhezZt1iK1FGIev127F
         wC4MMDDWQgUVFbGxMFG4KgaIYhd2tygW2IqKXgsVFVtQsMW4it2tV69xzfX3LPsuc2ff+c58MWddeP45
         Z76Z+X5n5p03ZscNDg4OMTAw0G9mFpuJi8S14gCxhPDaFqPfAkwv1hFnijfEYMRkcYfYQ8wvvD46pV8C
         rCiOEc+Jv0T84h5fimvENmJ24fXbmpICsJwPFI+I34X3krm8Jy4WG4mZhDdeI7oWgGW7p7hTsJy9l2nD
@@ -160,7 +160,7 @@
   <data name="but_reload.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAIGNIUk0AAHolAACAgwAA+f8AAIDoAABS
-        CAABFVgAADqXAAAXb9daH5AAAAAJcEhZcwAARCMAAEQjARIjYisAAAY5SURBVHhe1dtpqG1zHMbx65pn
+        CAABFVgAADqXAAAXb9daH5AAAAAJcEhZcwAARBsAAEQbAe2VWxAAAAY5SURBVHhe1dtpqG1zHMbx65pn
         oUxlyJA5XBlfEC9kum90ZYhMiSIhQ+aULikZokxJIUMkhMxDhpBEhAyZ5zFDmY7nua11PHvt7zp77Wlt
         59an2/mdtX/r/6y99xr+a505U1NTM5o3b97/wWJysWwbtUYoU8JioqYTsJb8IQ9FrRHKlLCYqOkEHCpT
         hWOLWiOUKWExUdMJuEnKDfCFbCK0XBfKlLCYqGnLVpJPpNwAdq/Qsl0oU8JioqYt20cyfOlooeU7UKaE
@@ -190,17 +190,36 @@
         H9c9hUW/ax1l+s/UnH8BePj8zIVNlTQAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="textBox_about.Text" xml:space="preserve">
-    <value>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, aliquid consectetur debitis harum illo molestiae
-nam natus nulla, optio pariatur quam quia sed voluptate. A ad atque beatae ducimus est facilis labore laborum
-minus
-nobis perspiciatis, sapiente, sed, sunt voluptatum? Distinctio harum illum incidunt natus non. Asperiores
-assumenda consequuntur dolore dolores dolorum, exercitationem expedita facilis fugiat inventore ipsa laborum, laudantium,
-minima
-officia pariatur quam recusandae rem similique sint tempora tempore temporibus ullam unde veniam vitae
-voluptatem.Consectetur ex ipsam molestiae molestias necessitatibus non, optio quis sint tempore voluptatibus. Consequatur
-dolore
-explicabo odio optio quae reiciendis sapiente. Autem fuga praesentium saepe.
-</value>
+  <data name="textBox_help.Text" xml:space="preserve">
+    <value>
+1. Pilih menu "Manage Vertex" pada menubar untuk mengelola graf
+
+2. Pilih tombol Load untuk membuka direktori file, lalu pilih graf USU 
+
+3. Pilih menu "Process" pada menubar, lalu pilih tombol dengan gambar dadu
+    maka untuk menghasilkan sebuah graf yang telah disesuaikan dengan peta USU
+
+4. Pilih algoritma yang akan digunakan, dengan memilih algortima Borůvka pada
+    combo box yang tersedia di halaman menubar Process, lalu klik tombol GO 
+
+5. Maka dihasilkan hasil optimasi graf dengan menggunakan cara kerja algortima MST 
+    Borůvka beserta hasil total jarak optimal yang dapat digunakan, dan real running time 
+    algoritma
+
+6. Pilih algoritma yang akan digunakan, dengan memilih algortima Borůvka pada
+    combo box yang tersedia di halaman menubar Process, lalu klik tombol GO 
+
+7. Maka akan dihasilkan hasil optimasi graf dengan menggunakan cara kerja algortima 
+    MST Prim beserta hasil total jarak optimal yang dapat digunakan, dan real running time 
+    algoritma</value>
   </data>
+  <metadata name="backgroundWorker1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="serialPort1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>247, 17</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>25</value>
+  </metadata>
 </root>

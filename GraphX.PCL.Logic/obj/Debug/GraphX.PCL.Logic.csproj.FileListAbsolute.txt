@@ -9,3 +9,14 @@ D:\Code\Desktop-App\GraphX-PCL\GraphX.PCL.Logic\bin\Debug\QuickGraph.Graphviz.xm
 D:\Code\Desktop-App\GraphX-PCL\GraphX.PCL.Logic\obj\Debug\GraphX.PCL.Logic.csprojResolveAssemblyReference.cache
 D:\Code\Desktop-App\GraphX-PCL\GraphX.PCL.Logic\obj\Debug\GraphX.PCL.Logic.dll
 D:\Code\Desktop-App\GraphX-PCL\GraphX.PCL.Logic\obj\Debug\GraphX.PCL.Logic.pdb
+C:\Users\Yohanes Simare Mare\Downloads\Compressed\MinimumTreeSpan\GraphX.PCL.Logic\bin\Debug\GraphX.PCL.Logic.dll
+C:\Users\Yohanes Simare Mare\Downloads\Compressed\MinimumTreeSpan\GraphX.PCL.Logic\bin\Debug\GraphX.PCL.Logic.pdb
+C:\Users\Yohanes Simare Mare\Downloads\Compressed\MinimumTreeSpan\GraphX.PCL.Logic\bin\Debug\GraphX.PCL.Common.dll
+C:\Users\Yohanes Simare Mare\Downloads\Compressed\MinimumTreeSpan\GraphX.PCL.Logic\bin\Debug\QuickGraph.dll
+C:\Users\Yohanes Simare Mare\Downloads\Compressed\MinimumTreeSpan\GraphX.PCL.Logic\bin\Debug\QuickGraph.Graphviz.dll
+C:\Users\Yohanes Simare Mare\Downloads\Compressed\MinimumTreeSpan\GraphX.PCL.Logic\bin\Debug\GraphX.PCL.Common.pdb
+C:\Users\Yohanes Simare Mare\Downloads\Compressed\MinimumTreeSpan\GraphX.PCL.Logic\bin\Debug\QuickGraph.xml
+C:\Users\Yohanes Simare Mare\Downloads\Compressed\MinimumTreeSpan\GraphX.PCL.Logic\bin\Debug\QuickGraph.Graphviz.xml
+C:\Users\Yohanes Simare Mare\Downloads\Compressed\MinimumTreeSpan\GraphX.PCL.Logic\obj\Debug\GraphX.PCL.Logic.csprojResolveAssemblyReference.cache
+C:\Users\Yohanes Simare Mare\Downloads\Compressed\MinimumTreeSpan\GraphX.PCL.Logic\obj\Debug\GraphX.PCL.Logic.dll
+C:\Users\Yohanes Simare Mare\Downloads\Compressed\MinimumTreeSpan\GraphX.PCL.Logic\obj\Debug\GraphX.PCL.Logic.pdb

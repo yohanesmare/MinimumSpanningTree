@@ -6,201 +6,129 @@ using System.Threading.Tasks;
 
 namespace JarakTerdekat
 {
-    class Boruvka
+    class Prim
     {
-        // Boruvka's algorithm to find Minimum Spanning
-        // Tree of a given connected, undirected and
-        // weighted graph
+        public List<int> resultEdgeCollection;
 
-        // a structure to represent a weighted edge in graph
+        public List<Edge> edges;
 
-        // a structure to represent a connected, undirected
-        // and weighted graph as a collection of edges.
-        public List<int> resultPath;
+        public int V;
 
-        public Boruvka()
+        public double totalJarak;
+
+        public Prim()
         {
-            resultPath = new List<int>();
+            resultEdgeCollection = new List<int>();
+            totalJarak = 0;
         }
-        class Graph
+
+        // Jumlah vertex dalam graf
+
+        // Fungsi utilitas untuk menemukan titik dengan nilai kunci minimum, dari
+        // Himpunan vertex yang belum termasuk dalam MST
+        public int minKey(List<double> key, List<bool> mstSet)
         {
-            // V-> Number of vertices, E-> Number of edges
-            public int V, E;
+            // Inisialisasi nilai min
+            double min = double.PositiveInfinity;
+            int min_index = 0;
 
-            // graph is represented as an array of edges.
-            // Since the graph is undirected, the edge
-            // from src to dest is also edge from dest
-            // to src. Both are counted as 1 edge here.
-            public List<Edge> edge = new List<Edge>();
-        };
-
-        // A structure to represent a subset for union-find
-        class subset
-        {
-            public int parent;
-            public int rank;
-        };
-
-            // The main function for MST using Boruvka's algorithm
-        void boruvkaMST(Graph graph)
-        {
-            // Get data of given graph
-            int V = graph.V;
-            int E = graph.E;
-            List<Edge> edge = graph.edge;
-
-            // Allocate memory for creating V subsets.
-            List<subset> subsets = new List<subset>();
- 
-            // An array to store index of the cheapest edge of
-            // subset.  The stored index for indexing array 'edge[]'
-            List<int> cheapest = new List<int>();
- 
-            // Create V subsets with single elements
-            for (int v = 0; v<V; ++v)
-            {
-                subsets.Add(new subset());
-                subsets[v].parent = v;
-                subsets[v].rank = 0;
-                cheapest.Add(0);
-            }
-
-            // Initially there are V different trees.
-            // Finally there will be one tree that will be MST
-            int numTrees = V;
-            double MSTweight = 0;
- 
-            // Keep combining components (or sets) until all
-            // compnentes are not combined into single MST.
-            while (numTrees > 1)
-            {
-                // Traverse through all edges and update
-                // cheapest of every component
-                for (int i = 0; i<E; i++)
+            for (int v = 0; v < V; v++)
+                if (mstSet[v] == false && key[v] < min)
                 {
-                    // Find components (or sets) of two corners
-                    // of current edge
-                    int set1 = find(subsets, edge[i].src);
-                    int set2 = find(subsets, edge[i].dest);
- 
-                    // If two corners of current edge belong to
-                    // same set, ignore current edge
-                    if (set1 == set2)
-                        continue;
- 
-                    // Else check if current edge is closer to previous
-                    // cheapest edges of set1 and set2
-                    else
-                    {
-                        if (cheapest.Count >= set1 ||
-                            edge[cheapest[set1]].weight > edge[i].weight)
-                            cheapest[set1] = i;
- 
-                        if (cheapest.Count >= set1 ||
-                            edge[cheapest[set2]].weight > edge[i].weight)
-                            cheapest[set2] = i;
-                    }
-                }
- 
-                // Consider the above picked cheapest edges and add them
-                // to MST
-                for (int i = 0; i<V; i++)
-                {
-                    // Check if cheapest for current set exists
-                    if (i < cheapest.Count)
-                    {
-                        int set1 = find(subsets, edge[cheapest[i]].src);
-                        int set2 = find(subsets, edge[cheapest[i]].dest);
- 
-                        if (set1 == set2)
-                            continue;
-                        MSTweight += edge[cheapest[i]].weight;
-                        Console.WriteLine("[" + edge[cheapest[i]].index + "] Edge " + edge[cheapest[i]].src + "-" + edge[cheapest[i]].dest + " included in MST");
-                        resultPath.Add(edge[cheapest[i]].index);
-                        // Do a union of set1 and set2 and decrease number
-                        // of trees
-                        Union(subsets, set1, set2);
-                        numTrees--;
-                    }
+                    min = key[v];
+                    min_index = v;
                 }
 
-                Console.WriteLine(numTrees);
-            }
-
-            Console.WriteLine("Weight of MST is " + MSTweight);
-            return;
-        }
- 
-        // Creates a graph with V vertices and E edges
-        Graph createGraph(int V, int E)
-        {
-            Graph graph = new Graph();
-            graph.V = V;
-            graph.E = E;
-            graph.edge = new List<Edge>();
-            return graph;
+            return min_index;
         }
 
-        // A utility function to find set of an element i
-        // (uses path compression technique)
-        int find(List<subset> subsets, int i)
+        // fungsi utilitas untuk mencetak MST yang dibangun disimpan dalam parent []
+        public void printMST(List<int> parent, int n, List<List<double>> graph)
         {
-            // find root and make root as parent of i
-            // (path compression)
-            if (subsets[i].parent != i)
-              subsets[i].parent =
-                     find(subsets, subsets[i].parent);
- 
-            return subsets[i].parent;
-        }
- 
-        // A function that does union of two sets of x and y
-        // (uses union by rank)
-        void Union(List<subset> subsets, int x, int y)
-        {
-            int xroot = find(subsets, x);
-            int yroot = find(subsets, y);
- 
-            // Attach smaller rank tree under root of high
-            // rank tree (Union by Rank)
-            if (subsets[xroot].rank<subsets[yroot].rank)
-                subsets[xroot].parent = yroot;
-            else if (subsets[xroot].rank > subsets[yroot].rank)
-                subsets[yroot].parent = xroot;
- 
-            // If ranks are same, then make one as root and
-            // increment its rank by one
-            else
+            Console.WriteLine("Edge   Weight\n");
+            for (int i = 1; i < V; i++)
             {
-                subsets[yroot].parent = xroot;
-                subsets[xroot].rank++;
+                Console.WriteLine(String.Format("{0} - {1}    {2} \n", parent[i], i, graph[i][parent[i]]));
+                totalJarak += graph[i][parent[i]];
+                addEdgeIndexToResult(parent[i], i);
             }
         }
 
-        public List<int> start(List<Edge> edges, int numOfVertices, int numOfEdges)
+        public void addEdgeIndexToResult(int src, int dest)
         {
-            Console.WriteLine("Number of vertices: " + numOfVertices);
-            Console.WriteLine("Number of edges: " + numOfEdges);
-
-            Graph graph = createGraph(numOfVertices, numOfEdges);
-
-            graph.edge = edges;
-
-            displayEdges(edges);
-
-            boruvkaMST(graph);
-
-            return resultPath;
-        }
-
-        public void displayEdges(List<Edge> edges)
-        {
-            int i = 1;
             foreach (var edge in edges)
             {
-                Console.WriteLine(i + ") edge " + edge.src + "-" + edge.dest + " : " + edge.weight);
-                i++;
+                if (((edge.src == src) && (edge.dest == dest)) || ((edge.src == dest) && (edge.dest == src)))
+                {
+                    resultEdgeCollection.Add(edge.index);
+                }
             }
+        }
+
+        // Fungsi untuk membangun dan MST cetak untuk grafik diwakili menggunakan 			    representasi
+        // ketetangaan matrix
+        public void primMST(List<List<double>> graph)
+        {
+            List<int> parent = new List<int>(); // Array untuk menyimpan MST yg terbentuk
+            List<double> key = new List<double>();   // Nilai kunci dipakai untuk memilih 								edge bobot minimum cut
+            List<bool> mstSet = new List<bool>();  // Untuk mempresentasikan set dari 								vertex yang belum termasuk dalam MST 						                  
+            parent.Add(0);
+
+            // Inisialisasi semua kunci sebagai INFINITE
+            for (int i = 0; i < V; i++)
+            {
+                key.Add(0);
+                mstSet.Add(false);
+
+                key[i] = double.PositiveInfinity;
+                mstSet[i] = false;
+            }
+
+            // Selalu sertakan vertex 1 pertama di MST.
+            key[0] = 0;     // Buat kunci 0 sehingga titik ini dipilih sebagai vertex 					pertama
+            parent[0] = -1; // Node pertama selalu menjadi akar dari MST
+
+            // MST akan memiliki vertex V
+            for (int count = 0; count < V - 1; count++)
+            {
+                // Pilih vertex kunci minimum dari himpunan vertex
+                // belum termasuk dalam MST
+                int u = minKey(key, mstSet);
+
+                // Tambahkan vertex terpilih ke himpunan MST
+                mstSet[u] = true;
+
+                // Perbaharui nilai key dan index parent dari the vertex yang beredekatan 		     dari
+                // vertex yang terpilih. Mempertimbangkan hanya vertex yang belum
+                // termasuk dalam MST
+                for (int v = 0; v < V; v++)
+                {
+                    parent.Add(0);
+                    // graph[u][v] adalah non zero hanya untuk vertex yang berdekatan dari
+                    // mstSet[v] adalah salah untuk vertex belum termasuk dalam MST
+                    // Perbaharui kunci hanya jika graf[u][v] lebih kecil dari kunci[v]
+                    if (((graph[u][v] > 0) ? true : false) && mstSet[v] == false && graph[u][v] < key[v])
+                    {
+                        parent[v] = u;
+                        key[v] = graph[u][v];
+                    }
+                }
+            }
+            // Cetak MST yang terbentuk
+            printMST(parent, V, graph);
+        }
+
+        // program driver untuk menguji fungsi di atas
+        public List<int> main(List<Edge> edges, List<List<double>> graphCollection, int V)
+        {
+
+            this.edges = edges;
+            this.V = V;
+
+            // Cetak solusi
+            primMST(graphCollection);
+
+            return resultEdgeCollection;
         }
     }
 }
